@@ -27,6 +27,7 @@
     "flowbuild": "flow-copy-source src dist",
     "prebuild": "npm run clean && npm run flowbuild",
     "build": "babel src -d dist",
+    "preversion": "npm run build",    
     "version": "standard-changelog && git add CHANGELOG.md",
     "release": "npm publish --access public",
     "postpublish": "git push origin master --follow-tags"
