@@ -4,7 +4,7 @@ const buildDir = "./docs/components";
 
 export const TEST_ME = "TEST STRING";
 
-function createComponentsNavFile(config, navArray) {
+export function createComponentsNavFile(config, navArray) {
   const fileName = "components-nav.json";
   try {
     fs.outputFileSync(
