@@ -1,9 +1,9 @@
-# nod
+# vdocs
 
-[![NPM version](https://img.shields.io/npm/v/generator-nod.svg?style=flat-square)](https://npmjs.org/package/generator-nod)
-[![Build Status](https://img.shields.io/travis/diegohaz/nod/master.svg?style=flat-square)](https://travis-ci.org/diegohaz/nod) [![Coverage Status](https://img.shields.io/codecov/c/github/diegohaz/nod/master.svg?style=flat-square)](https://codecov.io/gh/diegohaz/nod/branch/master)
+[![NPM version](https://img.shields.io/npm/v/generator-vdocs.svg?style=flat-square)](https://npmjs.org/package/generator-vdocs)
+[![Build Status](https://img.shields.io/travis/diegohaz/vdocs/master.svg?style=flat-square)](https://travis-ci.org/diegohaz/vdocs) [![Coverage Status](https://img.shields.io/codecov/c/github/davidroyer/vdocs/master.svg?style=flat-square)](https://codecov.io/gh/davidroyer/vdocs/branch/master)
 
-NodeJS module generator/boilerplate.
+vdocseJS module generator/boilerplate.
 
 <p align="center"><img src="https://cloud.githubusercontent.com/assets/3068563/21958520/77e4f45e-da97-11e6-9685-fe380a9cce3d.gif"></p>
 
@@ -20,17 +20,17 @@ NodeJS module generator/boilerplate.
 
 ## Install
 
-The easiest way to use **nod** is through the Yeoman Generator.
+The easiest way to use **vdocs** is through the Yeoman Generator.
 
 ```sh
-$ npm install -g yo generator-nod
-$ yo nod
+$ npm install -g yo generator-vdocs
+$ yo vdocs
 ```
 
 If you don't want to use the generator, you can also download or `git clone` this repo
 
 ```sh
-$ git clone https://github.com/diegohaz/nod my-module
+$ git clone https://github.com/davidroyer/vdocs my-module
 $ cd my-module
 $ rm -rf .git
 $ npm install # or yarn
@@ -168,7 +168,7 @@ It'll automatically run `test`, `lint`, `docs`, `build`, generate `CHANGELOG.md`
         "outDir": "dist/ts",
         "target": "esnext",
         "module": "esnext",
-        "moduleResolution": "node",
+        "moduleResolution": "vdocse",
         "jsx": "react",
         "strict": true,
         "declaration": true,
@@ -194,7 +194,7 @@ It'll automatically run `test`, `lint`, `docs`, `build`, generate `CHANGELOG.md`
     ```json
       "settings": {
         "import/resolver": {
-          "node": {
+          "vdocse": {
             "extensions": [".js", ".jsx", ".ts", ".tsx"]
           }
         }
@@ -250,4 +250,4 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## License
 
-MIT © [Diego Haz](https://github.com/diegohaz)
+MIT © [David Royer](https://github.com/davidroyer)
