@@ -1,6 +1,6 @@
 {
   "name": "@droyer/vdocs",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Documenation helper for Vue.js component libraries",
   "license": "MIT",
   "repository": "davidroyer/vdocs",
@@ -29,7 +29,6 @@
     "version": "standard-changelog && git add CHANGELOG.md",
     "postpublish": "git push origin master --follow-tags"
   },
-
   "lint-staged": {
     "*.js": [
       "eslint --fix",
