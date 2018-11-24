@@ -1,5 +1,6 @@
 {
   "name": "@droyer/vdocs",
+  "private": false,
   "version": "0.0.2",
   "description": "Documenation helper for Vue.js component libraries",
   "license": "MIT",
@@ -27,6 +28,7 @@
     "prebuild": "npm run clean && npm run flowbuild",
     "build": "babel src -d dist",
     "version": "standard-changelog && git add CHANGELOG.md",
+    "release": "npm publish --access public",
     "postpublish": "git push origin master --follow-tags"
   },
   "lint-staged": {
