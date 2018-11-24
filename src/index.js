@@ -1,0 +1,159 @@
+import * as vueDocs from "vue-docgen-api";
+import readdirp from "readdirp";
+import path from "path";
+import fs from "fs-extra";
+import { createComponentsNavFile } from "./core/generator.js";
+
+function isEmptyObj(obj) {
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) return false;
+  }
+  return true;
+}
+
+const descriptionItem = item => `
+- \`${item.name}\`
+
+  ${item.description}      
+`;
+
+const methodsIterator = methods =>
+  methods.map(method => descriptionItem(method));
+
+// SAVE FOR LATER
+// ${obj[prop]['defaultValue'] ? '**Default: **  ' + obj[prop]['defaultValue']['value'] : ''}
+
+function propsIterator(obj) {
+  let propsContent = ``;
+  for (const prop in obj) {
+    const { description, type } = obj[prop];
+    propsContent += `
+- \`${prop}\` ***${type.name.capitalize()}***
+
+  ${description}
+`;
+  }
+  return propsContent;
+}
+
+function methodsTemplate(methods) {
+  if (methods.length > 0) {
+    return `
+## Methods
+${methodsIterator(methods)}
+`;
+  }
+  return "";
+}
+
+function defaultTemplate(title, obj) {
+  if (isEmptyObj(obj)) return "";
+
+  let content = `## ${title}`;
+
+  for (const propKey in obj) {
+    const item = {
+      name: propKey,
+      description: obj[propKey].description
+    };
+    content += descriptionItem(item);
+  }
+  return content;
+}
+
+function createJsonFile(config, filename, content) {
+  try {
+    fs.outputFileSync(
+      `${config.docsDir}/${filename}/documentation.json`,
+      JSON.stringify(content),
+      "utf8"
+    );
+  } catch (e) {
+    console.log("Cannot write file ", e);
+  }
+}
+
+function createMarkdownFile(config, filename, mdContent) {
+  console.log(config.docsDir);
+  try {
+    fs.outputFileSync(
+      `${config.docsDir}/${filename}/README.md`,
+      mdContent,
+      "utf8"
+    );
+  } catch (e) {
+    console.log("Cannot write file ", e);
+  }
+}
+
+function createMarkdownContent(content) {
+  const { displayName, description, props, events, methods, slots } = content;
+
+  const mdDocContent = `
+# ${displayName}
+${description}
+
+## Props
+
+${propsIterator(props)}
+
+${defaultTemplate("Slots", slots)}
+
+${defaultTemplate("Events", events)}
+
+${methodsTemplate(methods)}
+`;
+  return mdDocContent;
+}
+
+// function createComponentsNavFile(config, navArray) {
+//     const fileName = 'components-nav.json'
+//     try {
+//         fs.outputFileSync(`${config.jsonDir}/${fileName}`, JSON.stringify(navArray), "utf8");
+//     } catch (e) {
+//         console.log("Cannot write file ", e);
+//     }
+// }
+
+const init = (config = {}) => {
+  const { componentsDir, outputDir } = config;
+  const readDirSettings = {
+    root: path.resolve(componentsDir),
+    entryType: "all"
+  };
+  console.log("root: ", readDirSettings.root);
+
+  const componentsNavArray = [];
+
+  readdirp(readDirSettings)
+    .on("data", entry => {
+      const { name, path } = entry;
+      // execute everytime a file is found in the providen directory
+      if (entry.name.endsWith(".vue")) {
+        const mdFileName = name.replace(".vue", "");
+        const componentInfo = vueDocs.parse(`${readDirSettings.root}/${path}`);
+        const mdContent = createMarkdownContent(componentInfo);
+
+        createJsonFile(config, mdFileName, componentInfo);
+        createMarkdownFile(config, mdFileName, mdContent);
+        componentsNavArray.push(`/components/${mdFileName}/`);
+      }
+    })
+    .on("warn", warn => {
+      console.log("Warn: ", warn);
+    })
+    .on("error", err => {
+      console.log("Error: ", err);
+    })
+    .on("end", () => {
+      createComponentsNavFile(config, componentsNavArray);
+    });
+  // In this example, this variable will store all the paths of the files and directories inside the providen path
+};
+
+exports.init = init;
+export default init;
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+};
