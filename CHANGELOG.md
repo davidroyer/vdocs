@@ -1,3 +1,13 @@
+<a name="0.0.3"></a>
+## [0.0.3](https://github.com/davidroyer/vdocs/compare/v0.0.2...v0.0.3) (2018-11-24)
+
+
+### Bug Fixes
+
+* **generator.js:** Fixed `createComponentsNavFile` function by exporting it ([3698d67](https://github.com/davidroyer/vdocs/commit/3698d67))
+
+
+
 <a name="0.0.2"></a>
 ## 0.0.2 (2018-11-24)
 
