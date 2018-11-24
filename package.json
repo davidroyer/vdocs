@@ -1,7 +1,7 @@
 {
   "name": "@droyer/vdocs",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Documenation helper for Vue.js component libraries",
   "license": "MIT",
   "repository": "davidroyer/vdocs",
@@ -27,7 +27,7 @@
     "flowbuild": "flow-copy-source src dist",
     "prebuild": "npm run clean && npm run flowbuild",
     "build": "babel src -d dist",
-    "preversion": "npm run build",    
+    "preversion": "npm run build",
     "version": "standard-changelog && git add CHANGELOG.md",
     "release": "npm publish --access public",
     "postpublish": "git push origin master --follow-tags"

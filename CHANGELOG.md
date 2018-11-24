@@ -1,3 +1,13 @@
+<a name="0.0.4"></a>
+## [0.0.4](https://github.com/davidroyer/vdocs/compare/v0.0.3...v0.0.4) (2018-11-24)
+
+
+### Bug Fixes
+
+* **package.json:** Added `preversion` script back because forgot to build ([2d85a83](https://github.com/davidroyer/vdocs/commit/2d85a83))
+
+
+
 <a name="0.0.3"></a>
 ## [0.0.3](https://github.com/davidroyer/vdocs/compare/v0.0.2...v0.0.3) (2018-11-24)
 
