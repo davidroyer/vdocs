@@ -1,3 +1,13 @@
+<a name="0.0.5"></a>
+## [0.0.5](https://github.com/davidroyer/vdocs/compare/v0.0.4...v0.0.5) (2018-11-24)
+
+
+### Bug Fixes
+
+* **generator.js:** Fixed `fs` error by importing `fs` ([a3fafa0](https://github.com/davidroyer/vdocs/commit/a3fafa0))
+
+
+
 <a name="0.0.4"></a>
 ## [0.0.4](https://github.com/davidroyer/vdocs/compare/v0.0.3...v0.0.4) (2018-11-24)
 
